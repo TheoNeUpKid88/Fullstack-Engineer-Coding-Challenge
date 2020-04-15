@@ -8,8 +8,9 @@ const compression = require('compression');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const emojiRegex = require('emoji-regex');
 const morgan = require('morgan');
+const router = express.Router();
+const payloadChecker = require('payload-validator');
 
 // Logging Configuration
 const logger = require('./lib/util/logger/log');
@@ -32,8 +33,8 @@ console.log('API Started');
 //// ROUTES FOR API
 app.use(logger.requestLogger);
 app.use(logger.errorLogger);
-app.use(`/api/encode`, users.Routes);
-app.use(`/api/decode`, reports.Routes);
+app.use(`/api/encode`, encode.Routes);
+app.use(`/api/decode`, decode.Routes);
 
 app.use(function (err, req, res, next) {
 
@@ -46,6 +47,26 @@ app.use(function (err, req, res, next) {
         next();
     }
 });
+
+router.route('/')
+    .get(function (req, res, next) {
+        res.json({ "message": "GET not supported" });
+    })
+    .post(function (req, res, next) {
+        // cross check req.body.message payload
+        if (req.body) {
+            var result = payloadChecker.validator(req.body, expectedPayload, ["Shift", "Message"], false);
+            if (result.success) {
+                next()
+            } else {
+                res.json({ "message": result.response.errorMessage });
+            }
+        } else {
+            res.json({ "message": "paylod not correct" });
+        }
+    });
+
+
 app.set('port', (process.env.PORT || 23456));
 app.listen(app.get('port'));
 console.warn('Memory usage', String(process.memoryUsage().heapUsed / (1024 * 1024) + ' mb'));
