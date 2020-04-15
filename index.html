@@ -3,60 +3,80 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Full Stack Engineer Coding Challenge</title>
-    <link rel="stylesheet" type="text/css" href="style.css.css" />
+    <title>Full Stack Engineer - Coding Challenge</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <noscript>This application requires javascipt to function</noscript>
+    <script async defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script async defer src="./js/script.js"></script>
 </head>
 
 <body>
     <h1>Full Stack Engineer Coding Challenge</h1>
+    <br />
+    <div id="lightfeather"></div>
+    <div>
+        <a href="https://www.lightfeather.io">LightFeather.io</a>
+    </div>
+    <br />
     <section>
         <div>
-            <h4>Web Component Specifications</h4>
+            <h4> Question 2: Web Component Specifications</h4>
+            <br />
+            <label for="techStack">Select BackEnd Stack</label>
+            <select id="techStack">
+                <option value="Go">Go</option>
+                <option value="Node">Node</option>
+                <option value="PHP">PHP</option>
+                <option value="Python">Python</option>
+            </select>
         </div>
+        <br />
         <div>
-        <p>
-            Create a User Singup that accepts the following fields:
-        </p>
-        <ul>
-            <li>
-                Username
-            </li>
-            <li>
-                Email
-            </li>
-            <li>
-                Password
-            </li>
-            <li>
-                Confirm Passowrd
-            </li>
-        </ul>
-    </div>
-    <div>
-        <form>
-            <div>
-                <label>Username</label>
-                <input minlength="15" name="Username" type="text" required>
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="email" name="Email" onclick="ValidateEmail(document.form1.text1)" /></li>
-            </div>
-            <div>
-                <label>Password</label>
-                <input name="Password" type="text" required>
-            </div>
-            <div>
-                <label>Confirm Passowrd</label>
-                <input minlength="5" name="Username" type="text" required>
-            </div>
-        </form>
-        <div>
-            <button disabled></button>
+            <p>
+                Create a User Singup that accepts the following fields:
+            </p>
+            <ul>
+                <li>
+                    Username
+                </li>
+                <li>
+                    Email
+                </li>
+                <li>
+                    Password
+                </li>
+                <li>
+                    Confirm Password
+                </li>
+            </ul>
         </div>
-    </div>
+        <br />
+        <div>
+            <form action="index.html" method="post" name="userSignUpForm">
+                <div>
+                    <label>Username</label>
+                    <input minlength="15" name="Username" type="text" required>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="email" name="Email" onclick="ValidateEmail(document.form1.text1)" /></li>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input name="Password" type="text" required>
+                </div>
+                <div>
+                    <label>Confirm Passowrd</label>
+                    <input minlength="5" name="cmPassword" type="text" required>
+                </div>
+            </form>
+            <br />
+            <div>
+                <input type="submit"></input>
+            </div>
+        </div>
     </section>
-    
+
 </body>
 
 </html>
