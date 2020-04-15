@@ -13,7 +13,7 @@ let shiftty = (str) =>{
      * Date: Apr 16, 2020
      */
     if(!str){
-        
+
     }
     let result = [];
     for(letters in str){
@@ -28,6 +28,7 @@ let encrypt = (char, shift, callback) => {
      * Purpose: shift cypher creation
      * Date: Apr 16, 2020
      */
+    // added for support concurrent requests
     async.waterfall([
         function(callback){
             if(!char || !shift){
@@ -50,4 +51,4 @@ let encrypt = (char, shift, callback) => {
 
 
 
-module.exports.encrypt = encrypt;
+module.exports.shiftty = shiftty;
