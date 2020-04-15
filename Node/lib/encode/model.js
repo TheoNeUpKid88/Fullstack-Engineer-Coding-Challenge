@@ -1,4 +1,6 @@
-const async = require("async")
+const async = require('async');
+const fs = require('fs');
+
 const alphabet = [
     'A', 'B', 'C', 'D', 'E', 'F',
     'G', 'H', 'I', 'J', 'K', 'L',
@@ -6,20 +8,25 @@ const alphabet = [
     'S', 'T', 'U', 'V', 'W', 'X',
     'Y', 'Z'
 ];
-let shiftty = (str) =>{
+let shiftty = (str) => {
     /**
      * Author: Ramon Jr. Yniguez
      * Purpose: shift cypher creation: handel multiple characters
      * Date: Apr 16, 2020
      */
-    if(!str){
-
+    if (!str) {
+        callback({ message: `invalid request ${char}`, statu: 500 });
+    } else {
+        let re = new RegExp('/[!@#$%^&*(),_+-=.?":`~{}|<>]/g');
+        if (re.test(str)) {
+            callback({ message: `invalid character identified ${char}`, statu: 500 });
+        }
     }
     let result = [];
-    for(letters in str){
+    for (letters in str) {
         result.push(encrypt(letters));
     }
-    return {"EncodedMessage": result};
+    return { "EncodedMessage": result };
 }
 
 let encrypt = (char, shift, callback) => {
@@ -28,27 +35,41 @@ let encrypt = (char, shift, callback) => {
      * Purpose: shift cypher creation
      * Date: Apr 16, 2020
      */
-    // added for support concurrent requests
+    // added for support concurrent requests, requiring previous step to be completed
     async.waterfall([
-        function(callback){
-            if(!char || !shift){
-                callback({message: `invalid character identified ${char}`, statu: 500});
-            }else{
-                callback(null, {char: char, shift: shift})
+        function (callback) {
+            if (!char || !shift) {
+                callback({ message: `invalid character identified ${char}`, statu: 500 });
+            } else {
+                callback(null, { char: char, shift: shift })
             }
         },
-        function(data, callback){
+        function (data, callback) {
             if (alphabet.includes(char.toUpperCase())) {
                 const position = alphabet.indexOf(data.char.toUpperCase());
                 const newPosition = (position + data.shift) % 26;
                 return alphabet[newPosition]
-            }else { 
-                callback({message: `invalid character identified ${data.char}`, statu: 500});
+            } else {
+                callback({ message: `invalid character identified ${data.char}`, statu: 500 });
             }
         }
     ], callback);
 }
 
+let writeToFile = (data, callback) => {
+    /**
+     * Author: Ramon Jr. Yniguez
+     * Purpose: shift cypher creation: write shift cyper to file
+     * Date: Apr 16, 2020
+     */
+    if (data) {
+        fs.appendFile('shiftcyphermessage.txt', data, function (error) {
+            if (err) callback({ message: `Unexpected error Occurred ${error}`, statu: 500 });
+            console.log('Saved!');
+        });
+    }
+}
 
 
 module.exports.shiftty = shiftty;
+module.exports.writeToFile = writeToFile;
