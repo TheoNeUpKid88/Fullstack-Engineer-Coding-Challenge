@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=prod
+    ports:
+      - "23456:23456"
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - app-network
+    command: node index.js
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,15 +1,22 @@
 // Wait for the DOM to be ready
 $(document).ready(function () {
-  const api = "http://localhost:23456/api/encode";
-  var shiftCypherRequest = function (data) {
-    return fetch(`${api}/encode`, {
+  /**
+   * Author: Ramon Jr. Yniguez
+   * Purpose: Highligh, JQuery Knowlege and implementation
+   * Date: Apr 16, 2020
+   */
+  const api = "http://localhost:23456/api";
+  var apiJQueryRequestExample = function (data) {
+    return fetch(`${api}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        Shift: data.shift,
-        Message: data.message
+        Username: Username,
+        Email: data.email,
+        Password: password,
+        cmPassword: cmpassword
       })
     }).then(function (result) {
       return result.json();
@@ -65,17 +72,15 @@ $(document).ready(function () {
         maxlength: "Your password must be at least 10 characters long"
       },
       cmPassword: {
-        required: "Make sure password matches",
+        required: "Make sure it matches password",
       },
     },
-    // Make sure the form is submitted to the destination defined
-    // in the "action" attribute of the form when valid
+    // fomr button handler
     submitHandler: function (form) {
-      form.preventDefault();
       form.submit(); // <- use 'form' argument here.
     }
   });
-
+  // validate form inputs
   $('form').find(':input').each(function (index, value) {
     /**
      * Author: Ramon Jr. Yiguez
@@ -85,33 +90,28 @@ $(document).ready(function () {
     $(value).on('click', function () {
       if ($('form').valid()) {
         $("#userSignUpFormButton").prop('disabled', false);
+        console.log('if Condition', value.validity.valid, $('form').valid());
+      } else {
+        $("#userSignUpFormButton").prop('disabled', true);
+        console.log('else Condition', value.validity.valid, $('form').valid());
       }
     })
-    console.log(value.validity.valid, $('form').valid());
   })
-  document.getElementById('userSignUpFormButton')
-    .addEventListener('click', () => {
-      /**
-       * Author: Ramon Jr. Yiguez
-       * Purpose: Register Event Listener for Button Click, and issue request based on BackEnd Selection
-       * Date: Apr 16, 2020
-       */
-      formVal = {
-        Username: $('#Username').val(),
-        Email: $('#Email').val(),
-        Password: $('#Password').val(),
-        cmPassword: $('#cmPassword').val(),
-      }
-      console.log('Form', formVal);
-      $("select").on('load click', function (selected) {
-        if (selected.target.value !== 'PHP') {
-          $('form').attr("action", `${api}`);
-          shiftCypherRequest(formVal).then(function (data) {
-            // request issued to webserver for shift cyper response here
-          });
-        } else {
-          $('form').attr("action", "/php/script.php");
-        }
+  $(document.body).on('click', function (value) {
+    if ($('form').valid()) {
+      $("#userSignUpFormButton").prop('disabled', false);
+      console.log('if Condition', value.valid, $('form').valid());
+    } else {
+      $("#userSignUpFormButton").prop('disabled', true);
+      console.log('else Condition', value.valid, $('form').valid());
+    }
+    document.getElementById('userSignUpFormButton')
+      .addEventListener('click', () => {
+        /**
+         * Author: Ramon Jr. Yiguez
+         * Purpose: Register Event Listener for Button Click, and issue request based on BackEnd Selection
+         * Date: Apr 16, 2020
+         */
       })
-    });
+  });
 });
