@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-04-16T08:16:54.534Z",
+    "end": "2020-04-16T08:16:54.543Z",
+    "duration": 9,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "944be57c-9c6d-4d91-b34c-631ffe10d982",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "523f3c80-67ef-4107-9231-814aa7e9b9ae",
+          "title": "test suite",
+          "fullFile": "/Users/DrYniguez/Fullstack-Engineer-Coding-Challenge/backend/Node/lib/util/tests/cypher-test.js",
+          "file": "/lib/util/tests/cypher-test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should add context",
+              "fullTitle": "test suite should add context",
+              "timedOut": false,
+              "duration": 1,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "[\n  \"simple string\",\n  \"http://www.url.com/pathname\",\n  \"http://www.url.com/screenshot-maybe.jpg\",\n  {\n    \"title\": \"expected output\",\n    \"value\": {\n      \"a\": 1,\n      \"b\": \"2\",\n      \"c\": \"d\"\n    }\n  }\n]",
+              "code": "// context can be a simple string\naddContext(this, 'simple string');\n \n// context can be a url and the report will create a link\naddContext(this, 'http://www.url.com/pathname');\n \n// context can be an image url and the report will show it inline\naddContext(this, 'http://www.url.com/screenshot-maybe.jpg');\n \n// context can be an object with title and value properties\naddContext(this, {\n  title: 'expected output',\n  value: {\n    a: 1,\n    b: '2',\n    c: 'd'\n  }\n});",
+              "err": {},
+              "uuid": "73156110-192f-4057-95ab-d96add330135",
+              "parentUUID": "523f3c80-67ef-4107-9231-814aa7e9b9ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "73156110-192f-4057-95ab-d96add330135"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.1.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.0"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.1.0"
+    }
+  }
+}
