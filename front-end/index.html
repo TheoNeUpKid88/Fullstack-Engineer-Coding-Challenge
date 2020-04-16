@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Full Stack Engineer - Coding Challenge</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="./assets/images/favicon.png" />
+    <noscript>This application requires javascipt to function</noscript>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js">
+    </script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
+</head>
+
+<body class="fadeIn">
+    <h1>Full Stack Engineer Coding Challenge</h1>
+    <br />
+    <div id="lightfeather"></div>
+    <div>
+        <a href="https://www.lightfeather.io">LightFeather.io</a>
+    </div>
+    <br />
+    <section>
+        <div>
+            <h4><u>Question 1: Web Server Selection</u></h4>
+            <label for="techStack">Select BackEnd Stack</label>
+            <select id="techStack">
+                <option value="Go">Go</option>
+                <option value="Node">Node</option>
+                <option value="PHP">PHP</option>
+                <option value="Python">Python</option>
+            </select>
+        </div>
+        <div>
+            <h4> <u>Question 2: Web Component Specifications</u></h4>
+            <p>
+                Create a User SignUp that accepts the following fields:
+            </p>
+            <ul>
+                <li>
+                    Username
+                </li>
+                <li>
+                    Email
+                </li>
+                <li>
+                    Password
+                </li>
+                <li>
+                    Confirm Password
+                </li>
+            </ul>
+        </div>
+        <br />
+        <div>
+            <form action="http://localhost:23456/api/encode" method="post" name="userSignUpForm">
+                <fieldset>
+                    <div>
+                        <label for="Username">Username:</label>
+                        <input maxlength="15" minlength="5" name="Username" type="text" id="Username" spellcheck="false"
+                            pattern="^([- \w\d\u00c0-\u024f]+)$" required>
+                    </div>
+                    <div>
+                        <label for="Email">Email:</label>
+                        <input type="email" name="Email" id="Email" spellcheck="false"
+                            pattern="^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$"
+                            required /></li>
+                    </div>
+                    <div>
+                        <label for="Passowrd">Password:</label>
+                        <input minlength="5" name="Password" type="text" id="Password" required>
+                    </div>
+                    <div>
+                        <label for="cmPassword">Confirm Password:</label>
+                        <input minlength="5" name="cmPassword" type="text" id="cmPassword" required>
+                    </div>
+                    <div>
+                        <button type="submit" id="userSignUpFormButton" disabled>Submit</bu>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
