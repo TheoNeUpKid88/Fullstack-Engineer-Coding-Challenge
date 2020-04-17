@@ -32,11 +32,17 @@ let shiftty = (str, callback) => {
         }
     }
     let result = [];
-    for (letters in str) {
+    for (letters in str.Message) {
         if(hasWhiteSpace(letters)){
             result.push(letters)
         }
-        result.push(encrypt(letters));
+        encrypt(letters, str.Shift, (err, nwMessage) =>{
+            if(err){
+                callback({ message: `invalid request ${char}`, statu: 500 }); 
+            }else{
+                result.push(nwMessage);
+            }
+        })
     }
     if(result.length <= 0){
         callback({message: 'Internal Server Error', status: 500});
