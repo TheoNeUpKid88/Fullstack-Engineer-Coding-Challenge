@@ -13,18 +13,17 @@ router.post("/", (req, res, next) =>{
         if (result.success) {
             model.shiftty(req.body, (error, success) =>{
                 if(error){
-                    console.log(error);
-                    res.send(error)
+                    res.status(500).json({ "EncodedMessage": '' });
                 }
                 if(success){
                     res.json(success);
                 }
             })
         } else {
-            res.json({ "message": result.response.errorMessage });
+            res.status(500).json({ "EncodedMessage": '' });
         }
     } else {
-        res.json({ "message": "paylod not correct" });
+        res.status(500).json({ "EncodedMessage": '' });
     }
 })
 

@@ -70,17 +70,16 @@ app.post('/api/encode', async (req, res) => {
             shiftty(req.body, (error: any, success: any) => {
 
                 if (error) {
-                    console.log(error);
-                    res.send(error);
+                    res.status(500).json({ 'EncodedMessage': '' });
                 }
                 if (success) {
                     res.json(success);
                 }
             });
         } else {
-            res.json({ 'message': result.response.errorMessage });
+            res.status(500).json({ 'EncodedMessage': '' });
         }
     } else {
-        res.json({ 'message': 'payload not correct' });
+        res.status(500).json({ 'EncodedMessage': '' });
     }
 });
