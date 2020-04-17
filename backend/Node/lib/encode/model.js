@@ -2,6 +2,10 @@ const async = require('async');
 const fs = require('fs');
 
 function hasWhiteSpace(s) {
+    /**
+     * Author: Ramon Jr. Yniguez
+     * Purpose: Determine if param contains white-space
+     */
     return /\s/g.test(s);
 }
 
@@ -12,7 +16,8 @@ const alphabet = [
     'S', 'T', 'U', 'V', 'W', 'X',
     'Y', 'Z'
 ];
-let shiftty = (str) => {
+
+let shiftty = (str, callback) => {
     /**
      * Author: Ramon Jr. Yniguez
      * Purpose: shift cypher creation: handel multiple characters
@@ -33,7 +38,12 @@ let shiftty = (str) => {
         }
         result.push(encrypt(letters));
     }
-    return { "EncodedMessage": result.join() };
+    if(result.length <= 0){
+        callback({message: 'Internal Server Error', status: 500});
+    }else{
+        writeToFile(result.join());        
+        callback(null, { "EncodedMessage": result.join()});
+    }
 }
 
 let encrypt = (char, shift, callback) => {
@@ -63,7 +73,7 @@ let encrypt = (char, shift, callback) => {
     ], callback);
 }
 
-let writeToFile = (data, callback) => {
+let writeToFile = (data) => {
     /**
      * Author: Ramon Jr. Yniguez
      * Purpose: shift cypher creation: write shift cyper to file

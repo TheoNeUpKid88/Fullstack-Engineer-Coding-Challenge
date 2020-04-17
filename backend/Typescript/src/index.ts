@@ -2,10 +2,13 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import * from './lib/model.js';
-
+import { shiftty } from './lib/model';
+const payloadChecker = require('payload-validator');
+const expectedPayload = {
+    'Shift': '',
+    'Message': ''
+};
 const app = express();
-
 const PORT = 23456;
 
 /**
@@ -34,7 +37,6 @@ server.on('error', (err: any) => {
 /**
  * Webpack HMR Activation
  */
-
 type ModuleId = string | number;
 
 interface WebpackHotModule {
@@ -57,9 +59,28 @@ if (module.hot) {
     module.hot.dispose(() => server.close());
 }
 
-app.get('/encode', (req, res) => {
+app.get('/api/encode', (req, res) => {
     res.send('simple test!');
 });
-app.post('/encode', (req, res) => {
-    
+app.post('/api/encode', async (req, res) => {
+    if (req.body) {
+
+        const result = payloadChecker.validator(req.body, expectedPayload, ['Shift', 'Message'], false);
+        if (result.success) {
+            shiftty(req.body, (error: any, success: any) => {
+
+                if (error) {
+                    console.log(error);
+                    res.send(error);
+                }
+                if (success) {
+                    res.json(success);
+                }
+            });
+        } else {
+            res.json({ 'message': result.response.errorMessage });
+        }
+    } else {
+        res.json({ 'message': 'payload not correct' });
+    }
 });

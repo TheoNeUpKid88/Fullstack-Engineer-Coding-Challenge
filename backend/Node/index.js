@@ -11,7 +11,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const router = express.Router();
 const payloadChecker = require('payload-validator');
-var expectedPayload = {
+const expectedPayload = {
     "Shift" : "",
     "Message" : ""
 };

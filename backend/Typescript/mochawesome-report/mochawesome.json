@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2020-04-17T06:04:12.246Z",
+    "end": "2020-04-17T06:04:12.272Z",
+    "duration": 26,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "45aadaf2-f05a-483a-a1d8-1dc21fe93fc2",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f917a909-7871-4073-9b9e-451f56ed0dbe",
+          "title": "Typescript endpoint testing",
+          "fullFile": "/Users/DrYniguez/Fullstack-Engineer-Coding-Challenge/backend/Typescript/test/endpoint-test.js",
+          "file": "/test/endpoint-test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "test encode endoint",
+              "fullTitle": "Typescript endpoint testing test encode endoint",
+              "timedOut": false,
+              "duration": 9,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "request.post(options, { timeout: 1500 }, function (error, response, body) {\n    console.log('BODY', error, response, body);\n    expect(body).to.equal('payload not correct');\n    done();\n});",
+              "err": {
+                "message": "AssertionError: expected undefined to equal 'payload not correct'",
+                "estack": "AssertionError: expected undefined to equal 'payload not correct'\n    at Request._callback (test/endpoint-test.js:15:29)\n    at self.callback (node_modules/request/request.js:185:22)\n    at Request.init (node_modules/request/request.js:273:17)\n    at new Request (node_modules/request/request.js:127:8)\n    at request (node_modules/request/index.js:53:10)\n    at Function.post (node_modules/request/index.js:61:12)\n    at Context.<anonymous> (test/endpoint-test.js:13:17)",
+                "diff": null
+              },
+              "uuid": "c1a85681-55fb-445e-b175-76b225c3be6c",
+              "parentUUID": "f917a909-7871-4073-9b9e-451f56ed0dbe",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "test encode endoint",
+              "fullTitle": "Typescript endpoint testing test encode endoint",
+              "timedOut": false,
+              "duration": 1,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "options.headers['content-type'] = 'application/json'\noptions['body'] = { 'Shift': 3, 'Message': 'Test' };\nrequest.post(options, { timeout: 1500 }, function (error, response, body) {\n    console.log('BODY', body);\n    expect(body)\n    done();\n});",
+              "err": {},
+              "uuid": "f5fccea1-8478-4276-9dbe-fc57bc027e5f",
+              "parentUUID": "f917a909-7871-4073-9b9e-451f56ed0dbe",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f5fccea1-8478-4276-9dbe-fc57bc027e5f"
+          ],
+          "failures": [
+            "c1a85681-55fb-445e-b175-76b225c3be6c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 10,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.1.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.1.0"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.1.0"
+    }
+  }
+}

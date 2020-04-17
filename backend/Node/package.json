@@ -1,10 +1,14 @@
 {
-  "name": "Fullstack-Engineer-Coding-Challenge",
+  "name": "full-stack-engineer-q1-node",
   "version": "1.0.0",
   "description": "purpose of this repo would be to demonstrate full-stack development capabilities",
   "main": "index.js",
   "repository": "https://github.com/TheoNeUpKid88/Fullstack-Engineer-Coding-Challenge.git",
   "author": "Ramon J. Yniguez <jryniguez@gmail.com>",
+  "scripts":{
+    "start": "node index.js",
+    "test": "npx mocha lib/util/tests/*.js --reporter mochawesome && exit 1"
+  },
   "license": "MIT",
   "private": false,
   "dependencies": {

@@ -1,15 +1,15 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "suites": 2,
+    "tests": 3,
+    "passes": 2,
     "pending": 0,
-    "failures": 0,
-    "start": "2020-04-16T08:16:54.534Z",
-    "end": "2020-04-16T08:16:54.543Z",
-    "duration": 9,
-    "testsRegistered": 1,
-    "passPercent": 100,
+    "failures": 1,
+    "start": "2020-04-17T06:19:33.384Z",
+    "end": "2020-04-17T06:19:33.404Z",
+    "duration": 20,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "944be57c-9c6d-4d91-b34c-631ffe10d982",
+      "uuid": "83e41c12-6f13-4674-b0a1-e58378efbaf5",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,16 +27,16 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "523f3c80-67ef-4107-9231-814aa7e9b9ae",
-          "title": "test suite",
-          "fullFile": "/Users/DrYniguez/Fullstack-Engineer-Coding-Challenge/backend/Node/lib/util/tests/cypher-test.js",
-          "file": "/lib/util/tests/cypher-test.js",
+          "uuid": "0426b59a-94da-407e-a318-ab7332d1068f",
+          "title": "Full-stack-engineer mochawsome Testsuite",
+          "fullFile": "/Users/DrYniguez/Fullstack-Engineer-Coding-Challenge/backend/Node/lib/util/tests/api-test.js",
+          "file": "/lib/util/tests/api-test.js",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
             {
               "title": "should add context",
-              "fullTitle": "test suite should add context",
+              "fullTitle": "Full-stack-engineer mochawsome Testsuite should add context",
               "timedOut": false,
               "duration": 1,
               "state": "passed",
@@ -44,23 +44,86 @@
               "pass": true,
               "fail": false,
               "pending": false,
-              "context": "[\n  \"simple string\",\n  \"http://www.url.com/pathname\",\n  \"http://www.url.com/screenshot-maybe.jpg\",\n  {\n    \"title\": \"expected output\",\n    \"value\": {\n      \"a\": 1,\n      \"b\": \"2\",\n      \"c\": \"d\"\n    }\n  }\n]",
-              "code": "// context can be a simple string\naddContext(this, 'simple string');\n \n// context can be a url and the report will create a link\naddContext(this, 'http://www.url.com/pathname');\n \n// context can be an image url and the report will show it inline\naddContext(this, 'http://www.url.com/screenshot-maybe.jpg');\n \n// context can be an object with title and value properties\naddContext(this, {\n  title: 'expected output',\n  value: {\n    a: 1,\n    b: '2',\n    c: 'd'\n  }\n});",
+              "context": "[\n  \"Full-stack-engineer coding challenge q1\",\n  \"https://digitalsynopsis.com/wp-content/uploads/2015/03/web-designer-developer-jokes-humour-funny-48.jpg\",\n  {\n    \"title\": \"expected output\",\n    \"value\": {}\n  }\n]",
+              "code": "// context can be a simple string\naddContext(this, 'Full-stack-engineer coding challenge q1');\n// context can be an image url and the report will show it inline\naddContext(this, 'https://digitalsynopsis.com/wp-content/uploads/2015/03/web-designer-developer-jokes-humour-funny-48.jpg');\n// context can be an object with title and value properties\naddContext(this, {\n  title: 'expected output',\n  value: {\n    Shift: Number,\n    Message: String\n  }\n});",
               "err": {},
-              "uuid": "73156110-192f-4057-95ab-d96add330135",
-              "parentUUID": "523f3c80-67ef-4107-9231-814aa7e9b9ae",
+              "uuid": "4923c102-560a-42d1-9746-a6ebe9e9c54a",
+              "parentUUID": "0426b59a-94da-407e-a318-ab7332d1068f",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "73156110-192f-4057-95ab-d96add330135"
+            "4923c102-560a-42d1-9746-a6ebe9e9c54a"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
           "duration": 1,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "4d7bc624-ec93-4437-b5f5-be5e18b990f7",
+          "title": "Typescript endpoint testing",
+          "fullFile": "/Users/DrYniguez/Fullstack-Engineer-Coding-Challenge/backend/Node/lib/util/tests/api-test.js",
+          "file": "/lib/util/tests/api-test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "test encode endoint",
+              "fullTitle": "Typescript endpoint testing test encode endoint",
+              "timedOut": false,
+              "duration": 8,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "request.post(options, { timeout: 1500 }, function (error, response, body) {\n  console.log('BODY', error, response, body);\n  expect(body).to.equal('payload not correct');\n  done();\n});",
+              "err": {
+                "message": "AssertionError: expected undefined to equal 'payload not correct'",
+                "estack": "AssertionError: expected undefined to equal 'payload not correct'\n    at Request._callback (lib/util/tests/api-test.js:39:23)\n    at self.callback (node_modules/request/request.js:185:22)\n    at Request.init (node_modules/request/request.js:273:17)\n    at new Request (node_modules/request/request.js:127:8)\n    at request (node_modules/request/index.js:53:10)\n    at Function.post (node_modules/request/index.js:61:12)\n    at Context.<anonymous> (lib/util/tests/api-test.js:37:13)",
+                "diff": null
+              },
+              "uuid": "5bcbc9cc-9fdf-482a-b734-9d889ea99552",
+              "parentUUID": "4d7bc624-ec93-4437-b5f5-be5e18b990f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "test encode endoint",
+              "fullTitle": "Typescript endpoint testing test encode endoint",
+              "timedOut": false,
+              "duration": 2,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "options.headers['content-type'] = 'application/json'\noptions['body'] = { 'Shift': 3, 'Message': 'Test' };\nrequest.post(options, { timeout: 1500 }, function (error, response, body) {\n  console.log('BODY', body);\n  expect(body)\n  done();\n});",
+              "err": {},
+              "uuid": "b848db25-2496-41d4-8d3e-dcb2e26f3c85",
+              "parentUUID": "4d7bc624-ec93-4437-b5f5-be5e18b990f7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b848db25-2496-41d4-8d3e-dcb2e26f3c85"
+          ],
+          "failures": [
+            "5bcbc9cc-9fdf-482a-b734-9d889ea99552"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 10,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

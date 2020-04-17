@@ -1,6 +1,8 @@
 {
   "name": "full-stack-engineer-q2",
   "version": "0.0.0",
+  "author": "Ramon J. Yniguez <jryniguez@gmail.com>",
+  "repository": "https://github.com/TheoNeUpKid88/Fullstack-Engineer-Coding-Challenge.git",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",

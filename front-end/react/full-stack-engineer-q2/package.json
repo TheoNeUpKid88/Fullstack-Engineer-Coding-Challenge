@@ -1,6 +1,9 @@
 {
   "name": "full-stack-engineer-q2",
   "version": "0.1.0",
+  "repository": "https://github.com/TheoNeUpKid88/Fullstack-Engineer-Coding-Challenge.git",
+  "author": "Ramon J. Yniguez <jryniguez@gmail.com>",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

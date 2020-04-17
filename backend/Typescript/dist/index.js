@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "b109b8a13130f9e543d8";
+/******/ 	var hotCurrentHash = "b45eb60dba44d292cf56";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -795,7 +795,18 @@ eval("/* WEBPACK VAR INJECTION */(function(__resourceQuery) {/*\n\tMIT License h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\nconst cors_1 = __importDefault(__webpack_require__(/*! cors */ \"cors\"));\nconst helmet_1 = __importDefault(__webpack_require__(/*! helmet */ \"helmet\"));\nconst app = express_1.default();\nconst PORT = 23456;\n/**\n *  App Configuration\n */\napp.use(helmet_1.default());\napp.use(cors_1.default());\napp.use(express_1.default.json());\nif (!PORT) {\n    process.exit(1);\n}\n/**\n * Server Activation\n */\nconst server = app.listen(PORT, () => {\n    console.log(`Listening on port ${PORT}`);\n});\nserver.on('error', (err) => {\n    console.log(JSON.stringify(err, null, 4));\n});\nif (true) {\n    module.hot.accept();\n    module.hot.dispose(() => server.close());\n}\napp.get('/encode', (req, res) => {\n    res.send('Hi!');\n});\napp.post('/encode', (req, res) => {\n    res.send('Hi!');\n});\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\nconst cors_1 = __importDefault(__webpack_require__(/*! cors */ \"cors\"));\nconst helmet_1 = __importDefault(__webpack_require__(/*! helmet */ \"helmet\"));\nconst model_1 = __webpack_require__(/*! ./lib/model */ \"./src/lib/model.js\");\nconst payloadChecker = __webpack_require__(/*! payload-validator */ \"payload-validator\");\nconst expectedPayload = {\n    'Shift': '',\n    'Message': ''\n};\nconst app = express_1.default();\nconst PORT = 23456;\n/**\n *  App Configuration\n */\napp.use(helmet_1.default());\napp.use(cors_1.default());\napp.use(express_1.default.json());\nif (!PORT) {\n    process.exit(1);\n}\n/**\n * Server Activation\n */\nconst server = app.listen(PORT, () => {\n    console.log(`Listening on port ${PORT}`);\n});\nserver.on('error', (err) => {\n    console.log(JSON.stringify(err, null, 4));\n});\nif (true) {\n    module.hot.accept();\n    module.hot.dispose(() => server.close());\n}\napp.get('/api/encode', (req, res) => {\n    res.send('simple test!');\n});\napp.post('/api/encode', (req, res) => __awaiter(void 0, void 0, void 0, function* () {\n    if (req.body) {\n        const result = payloadChecker.validator(req.body, expectedPayload, ['Shift', 'Message'], false);\n        if (result.success) {\n            model_1.shiftty(req.body, (error, success) => {\n                if (error) {\n                    console.log(error);\n                    res.send(error);\n                }\n                if (success) {\n                    res.json(success);\n                }\n            });\n        }\n        else {\n            res.json({ 'message': result.response.errorMessage });\n        }\n    }\n    else {\n        res.json({ 'message': 'paylod not correct' });\n    }\n}));\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+
+/***/ }),
+
+/***/ "./src/lib/model.js":
+/*!**************************!*\
+  !*** ./src/lib/model.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const async = __webpack_require__(/*! async */ \"async\");\nconst fs = __webpack_require__(/*! fs */ \"fs\");\n\nfunction hasWhiteSpace(s) {\n    /**\n     * Author: Ramon Jr. Yniguez\n     * Purpose: Determine if param contains white-space\n     */\n    return /\\s/g.test(s);\n}\n\nconst alphabet = [\n    'A', 'B', 'C', 'D', 'E', 'F',\n    'G', 'H', 'I', 'J', 'K', 'L',\n    'M', 'N', 'O', 'P', 'Q', 'R',\n    'S', 'T', 'U', 'V', 'W', 'X',\n    'Y', 'Z'\n];\n\nlet shiftty = (str, callback) => {\n    /**\n     * Author: Ramon Jr. Yniguez\n     * Purpose: shift cypher creation: handel multiple characters\n     * Date: Apr 16, 2020\n     */\n    if (!str) {\n        callback({ message: `invalid request ${char}`, statu: 500 });\n    } else {\n        let re = new RegExp('/[!@#$%^&*(),_+-=.?\":`~{}|<>]/g');\n        if (re.test(str)) {\n            callback({ message: `invalid character identified ${char}`, statu: 500 });\n        }\n    }\n    let result = [];\n    for (letters in str) {\n        if(hasWhiteSpace(letters)){\n            result.push(letters)\n        }\n        result.push(encrypt(letters));\n    }\n    if(result.length <= 0){\n        callback({message: 'Internal Server Error', status: 500});\n    }else{\n        writeToFile(result.join());        \n        callback(null, { \"EncodedMessage\": result.join()});\n    }\n}\n\nlet encrypt = (char, shift, callback) => {\n    /**\n     * Author: Ramon Jr. Yniguez\n     * Purpose: shift cypher creation\n     * Date: Apr 16, 2020\n     */\n    // added for support concurrent requests, requiring previous step to be completed\n    async.waterfall([\n        function (callback) {\n            if (!char || !shift) {\n                callback({ message: `invalid character identified ${char}`, statu: 500 });\n            } else {\n                callback(null, { char: char, shift: shift })\n            }\n        },\n        function (data, callback) {\n            if (alphabet.includes(char.toUpperCase())) {\n                const position = alphabet.indexOf(data.char.toUpperCase());\n                const newPosition = (position + data.shift) % 26;\n                return alphabet[newPosition]\n            } else {\n                callback({ message: `invalid character identified ${data.char}`, statu: 500 });\n            }\n        }\n    ], callback);\n}\n\nlet writeToFile = (data) => {\n    /**\n     * Author: Ramon Jr. Yniguez\n     * Purpose: shift cypher creation: write shift cyper to file\n     * Date: Apr 16, 2020\n     */\n    if (data) {\n        fs.appendFile('shiftcyphermessage.txt', data, function (error) {\n            if (err) callback({ message: `Unexpected error Occurred ${error}`, statu: 500 });\n            console.log('Saved!');\n        });\n    }\n}\n\n\nmodule.exports.shiftty = shiftty;\nmodule.exports.writeToFile = writeToFile;\n\n//# sourceURL=webpack:///./src/lib/model.js?");
 
 /***/ }),
 
@@ -807,6 +818,17 @@ eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("__webpack_require__(/*! webpack/hot/poll?100 */\"./node_modules/webpack/hot/poll.js?100\");\nmodule.exports = __webpack_require__(/*! ./src/index.ts */\"./src/index.ts\");\n\n\n//# sourceURL=webpack:///multi_webpack/hot/poll?");
+
+/***/ }),
+
+/***/ "async":
+/*!************************!*\
+  !*** external "async" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"async\");\n\n//# sourceURL=webpack:///external_%22async%22?");
 
 /***/ }),
 
@@ -832,6 +854,17 @@ eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///externa
 
 /***/ }),
 
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"fs\");\n\n//# sourceURL=webpack:///external_%22fs%22?");
+
+/***/ }),
+
 /***/ "helmet":
 /*!*************************!*\
   !*** external "helmet" ***!
@@ -840,6 +873,17 @@ eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///externa
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"helmet\");\n\n//# sourceURL=webpack:///external_%22helmet%22?");
+
+/***/ }),
+
+/***/ "payload-validator":
+/*!************************************!*\
+  !*** external "payload-validator" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"payload-validator\");\n\n//# sourceURL=webpack:///external_%22payload-validator%22?");
 
 /***/ })
 

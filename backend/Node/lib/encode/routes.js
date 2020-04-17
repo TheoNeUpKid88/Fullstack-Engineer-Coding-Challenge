@@ -11,7 +11,15 @@ router.post("/", (req, res, next) =>{
     if (req.body) {
         var result = payloadChecker.validator(req.body, expectedPayload, ["Shift", "Message"], false);
         if (result.success) {
-            next()
+            model.shiftty(req.body, (error, success) =>{
+                if(error){
+                    console.log(error);
+                    res.send(error)
+                }
+                if(success){
+                    res.json(success);
+                }
+            })
         } else {
             res.json({ "message": result.response.errorMessage });
         }
