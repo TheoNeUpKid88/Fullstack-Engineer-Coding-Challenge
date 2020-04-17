@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "48c87c0b158752fc655b";
+/******/ 	var hotCurrentHash = "b109b8a13130f9e543d8";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -795,7 +795,7 @@ eval("/* WEBPACK VAR INJECTION */(function(__resourceQuery) {/*\n\tMIT License h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nvar __importStar = (this && this.__importStar) || function (mod) {\n    if (mod && mod.__esModule) return mod;\n    var result = {};\n    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];\n    result[\"default\"] = mod;\n    return result;\n};\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst dotenv = __importStar(__webpack_require__(/*! dotenv */ \"dotenv\"));\nconst express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\nconst cors_1 = __importDefault(__webpack_require__(/*! cors */ \"cors\"));\nconst helmet_1 = __importDefault(__webpack_require__(/*! helmet */ \"helmet\"));\nconst app = express_1.default();\nlet NODE_ENV = 'local';\ndotenv.config({ path: `./lib/enviornment/.${\"development\"}.env` });\nconst PORT = parseInt(process.env.PORT, 10);\n/**\n *  App Configuration\n */\napp.use(helmet_1.default());\napp.use(cors_1.default());\napp.use(express_1.default.json());\nif (!PORT) {\n    process.exit(1);\n}\nconst server = app.listen(PORT, () => {\n    console.log(`Listening on port ${PORT}`);\n});\nif (true) {\n    module.hot.accept();\n    module.hot.dispose(() => server.close());\n}\napp.get(\"/encode\", (req, res) => {\n    res.send(\"Hi!\");\n});\napp.post(\"/encode\", (req, res) => {\n    res.send(\"Hi!\");\n});\n/**\n * Server Activation\n */\napp.listen(PORT, () => {\n    // tslint:disable-next-line:no-console\n    console.log(`server started at http://localhost:${PORT}`);\n});\n\n\n//# sourceURL=webpack:///./src/index.ts?");
+eval("\nvar __importDefault = (this && this.__importDefault) || function (mod) {\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\n};\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\nconst cors_1 = __importDefault(__webpack_require__(/*! cors */ \"cors\"));\nconst helmet_1 = __importDefault(__webpack_require__(/*! helmet */ \"helmet\"));\nconst app = express_1.default();\nconst PORT = 23456;\n/**\n *  App Configuration\n */\napp.use(helmet_1.default());\napp.use(cors_1.default());\napp.use(express_1.default.json());\nif (!PORT) {\n    process.exit(1);\n}\n/**\n * Server Activation\n */\nconst server = app.listen(PORT, () => {\n    console.log(`Listening on port ${PORT}`);\n});\nserver.on('error', (err) => {\n    console.log(JSON.stringify(err, null, 4));\n});\nif (true) {\n    module.hot.accept();\n    module.hot.dispose(() => server.close());\n}\napp.get('/encode', (req, res) => {\n    res.send('Hi!');\n});\napp.post('/encode', (req, res) => {\n    res.send('Hi!');\n});\n\n\n//# sourceURL=webpack:///./src/index.ts?");
 
 /***/ }),
 
@@ -818,17 +818,6 @@ eval("__webpack_require__(/*! webpack/hot/poll?100 */\"./node_modules/webpack/ho
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"cors\");\n\n//# sourceURL=webpack:///external_%22cors%22?");
-
-/***/ }),
-
-/***/ "dotenv":
-/*!*************************!*\
-  !*** external "dotenv" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"dotenv\");\n\n//# sourceURL=webpack:///external_%22dotenv%22?");
 
 /***/ }),
 

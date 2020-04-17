@@ -3,21 +3,51 @@ The purpose of this repository would be to demonstrate knowledge and best practi
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
 What things you need to install the software and how to install them
-
+* Node Package Manager
+    * npm
+    * yarn
+    * PHP
+    * Typescript
+    * Python
+    * Django
+    * GO
 ```
-Give examples
+ **NOTE** Please determine backend project prior to using select a front-end folder
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+A step by step series of how to get a development env running
 
-Say what the step will be
+1. Backend Folder selection
+   - Node
+     1. npm / yarn install
+     2. npm / yarn start
+   - Go
+     1. go run main.go
+   - PHP
+     1. php -S localhost:23456
+   - Python
+     1. go run main.go
+   - Typescript
+     1. npm / yarn install
+     2. npm / yarn webpack
+     3. npm / yarn start
+2. Front-end Folder selection
+    - Angular
+      1. npm / yarn install
+      2. npm / yarn start
+    - react
+      1. npm / yarn install
+      2. npm / yarn start
+    - static
+      - simply open file in browser
+     
 
 ```
 Give the example

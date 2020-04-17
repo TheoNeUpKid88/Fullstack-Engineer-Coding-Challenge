@@ -1,15 +1,13 @@
-import * as dotenv from "dotenv";
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
+import * as dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import * from './lib/model.js';
+
 const app = express();
 
-let NODE_ENV='local';
-dotenv.config({ path: `./lib/enviornment/.${process.env.NODE_ENV}.env` });
+const PORT = 23456;
 
-const PORT: number = parseInt(process.env.PORT as string, 10);
-
-console.log('Print Starting server');
 /**
  *  App Configuration
  */
@@ -22,8 +20,15 @@ if (!PORT) {
     process.exit(1);
 }
 
+/**
+ * Server Activation
+ */
 const server = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
+});
+
+server.on('error', (err: any) => {
+    console.log(JSON.stringify(err, null, 4));
 });
 
 /**
@@ -52,17 +57,9 @@ if (module.hot) {
     module.hot.dispose(() => server.close());
 }
 
-app.get("/encode", (req, res) => {
-    res.send("Hi!");
+app.get('/encode', (req, res) => {
+    res.send('simple test!');
 });
-app.post("/encode", (req, res) => {
-    res.send("Hi!");
-});
-
-/**
- * Server Activation
- */
-app.listen(PORT, () => {
-    // tslint:disable-next-line:no-console
-    console.log(`server started at http://localhost:${PORT}`);
+app.post('/encode', (req, res) => {
+    
 });
