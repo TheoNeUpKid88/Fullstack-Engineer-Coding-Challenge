@@ -1,15 +1,20 @@
 import React from 'react';
 import logo from './favicon.png';
 import $ from 'jquery';
+import validate from 'jquery-validation'
 import './App.css';
 
 
 function App() {
+  const inlineStyle = {
+    'fontStyle': 'italic',
+    'color' : 'white'
+  }
   // Wait for the DOM to be ready
   $(document).ready(function () {
     /**
      * Author: Ramon Jr. Yniguez
-     * Purpose: Highligh, JQuery Knowlege and implementation
+     * Purpose: Highlighting, JQuery Knowlege and implementation
      * Date: Apr 16, 2020
      */
     const api = "http://localhost:23456/api";
@@ -39,25 +44,18 @@ function App() {
         // on the right side
         Username: {
           required: true,
-          minlength: 5,
-          maxlength: 15
         },
         Email: {
           required: true,
           // Specify that email should be validated
           // by the built-in "email" rule
           email: true,
-          maxlength: 20,
         },
         Password: {
           required: true,
-          minlength: 5,
-          maxlength: 10,
         },
         cmPassword: {
           required: true,
-          minlength: 5,
-          maxlength: 10,
           equalTo: "#Password"
         },
       },
@@ -65,18 +63,18 @@ function App() {
       messages: {
         Username: {
           required: "Please provide Username",
-          minlength: "Your Username must cannot be less than 5 or more than 15 characters long",
-          maxlength: "Your Username must cannot be less than 5 or more than 15 characters long",
+          minLength: "Your Username must cannot be less than 5 or more than 15 characters long",
+          maxLength: "Your Username must cannot be less than 5 or more than 15 characters long",
         },
         email: {
           required: "Please enter a valid email address",
-          minlength: "Your password must be at least 5 characters long",
-          maxlength: "Your password must be at least 20 characters long"
+          minLength: "Your password must be at least 5 characters long",
+          maxLength: "Your password must be at least 20 characters long"
         },
         password: {
           required: "Please provide a password",
-          minlength: "Your password must be at least 5 characters long",
-          maxlength: "Your password must be at least 10 characters long"
+          minLength: "Your password must be at least 5 characters long",
+          maxLength: "Your password must be at least 10 characters long"
         },
         cmPassword: {
           required: "Make sure it matches password",
@@ -88,12 +86,15 @@ function App() {
       }
     });
     // validate form inputs
-    $('form').find(':input').each(function (index, value) {
+    $("form[name='userSignUpForm']").find(':input').each(function (index, value) {
       /**
        * Author: Ramon Jr. Yiguez
        * Purpose: Traverse Form Inputs and validate, else disable button
        * Date: Apr 16, 2020
        */
+      if ($(value).isDefaultPrevented) {
+        value.preventDefault();
+      }
       $(value).on('click', function () {
         if ($('form').valid()) {
           $("#userSignUpFormButton").prop('disabled', false);
@@ -102,10 +103,15 @@ function App() {
           $("#userSignUpFormButton").prop('disabled', true);
           console.log('else Condition', value.validity.valid, $('form').valid());
         }
-      })
-    })
+      });
+    });
+
+    // $("form").first().trigger('click');
+    // if (event.isDefaultPrevented()) {
+    //   // Perform an action...
+    // }
     $(document.body).on('click', function (value) {
-      if ($('form').valid()) {
+      if ($("form[name='userSignUpForm']").valid()) {
         $("#userSignUpFormButton").prop('disabled', false);
         console.log('if Condition', value.valid, $('form').valid());
       } else {
@@ -126,7 +132,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <a href="https://www.lightfeather.io">LightFeather.io</a>
+        <a href="https://www.lightfeather.io" style={inlineStyle}>LightFeather.io</a>
 
         <h1>Full Stack Engineer Coding Challenge</h1>
         <br />
@@ -153,26 +159,26 @@ function App() {
           </div>
           <br />
           <div>
-            <form action="./assets/php/login.php" method="post" name="userSignUpForm" autocomplete="off">
+            <form action="./assets/php/login.php" method="post" name="userSignUpForm" autoComplete="off">
               <fieldset>
                 <div>
-                  <label for="Username">Username:</label>
-                  <input maxlength="15" minlength="5" name="Username" type="text" id="Username" spellcheck="false"
-                    pattern="^([- \w\d\u00c0-\u024f]+)$" autofocus required />
+                  <label htmlFor="Username">Username:</label>
+                  <input maxLength="15" minLength="5" name="Username" type="text" id="Username" spellCheck="false"
+                    pattern="^([- \w\d\u00c0-\u024f]+)$" autoFocus required />
                 </div>
                 <div>
-                  <label for="Email">Email:</label>
-                  <input type="email" name="Email" id="Email" spellcheck="false"
+                  <label htmlFor="Email">Email:</label>
+                  <input maxLength="20" type="email" name="Email" id="Email" spellCheck="false"
                     pattern="^(([-\w\d]+)(\.[-\w\d]+)*@([-\w\d]+)(\.[-\w\d]+)*(\.([a-zA-Z]{2,5}|[\d]{1,3})){1,2})$"
-                    autofocus required />
+                    autoFocus required />
                 </div>
                 <div>
-                  <label for="Passowrd">Password:</label>
-                  <input minlength="5" name="Password" type="text" id="Password" autofocus required />
+                  <label htmlFor="Passowrd">Password:</label>
+                  <input minLength="5" name="Password" type="text" id="Password" autoFocus required />
                 </div>
                 <div>
-                  <label for="cmPassword">Confirm Password:</label>
-                  <input minlength="5" name="cmPassword" type="text" id="cmPassword" autofocus required />
+                  <label htmlFor="cmPassword">Confirm Password:</label>
+                  <input minLength="5" name="cmPassword" type="text" id="cmPassword" autoFocus required />
                 </div>
                 <div>
                   <button type="submit" id="userSignUpFormButton" disabled>Submit</button>

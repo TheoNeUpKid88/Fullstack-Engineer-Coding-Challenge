@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+and constructed to highlight skills sets for Full-stack-engineer-coding challenge
 
+(MD file auto-generated)
 ## Available Scripts
 
 In the project directory, you can run:

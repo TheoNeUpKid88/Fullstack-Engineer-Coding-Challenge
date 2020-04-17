@@ -4,9 +4,12 @@ import cors from "cors";
 import helmet from "helmet";
 const app = express();
 
+let NODE_ENV='local';
 dotenv.config({ path: `./lib/enviornment/.${process.env.NODE_ENV}.env` });
+
 const PORT: number = parseInt(process.env.PORT as string, 10);
 
+console.log('Print Starting server');
 /**
  *  App Configuration
  */
@@ -49,6 +52,9 @@ if (module.hot) {
     module.hot.dispose(() => server.close());
 }
 
+app.get("/encode", (req, res) => {
+    res.send("Hi!");
+});
 app.post("/encode", (req, res) => {
     res.send("Hi!");
 });

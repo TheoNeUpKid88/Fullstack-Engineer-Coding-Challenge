@@ -1,6 +1,10 @@
 const async = require('async');
 const fs = require('fs');
 
+function hasWhiteSpace(s) {
+    return /\s/g.test(s);
+}
+
 const alphabet = [
     'A', 'B', 'C', 'D', 'E', 'F',
     'G', 'H', 'I', 'J', 'K', 'L',
@@ -24,9 +28,12 @@ let shiftty = (str) => {
     }
     let result = [];
     for (letters in str) {
+        if(hasWhiteSpace(letters)){
+            result.push(letters)
+        }
         result.push(encrypt(letters));
     }
-    return { "EncodedMessage": result };
+    return { "EncodedMessage": result.join() };
 }
 
 let encrypt = (char, shift, callback) => {
