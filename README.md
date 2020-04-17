@@ -70,5 +70,5 @@ Though, not requested I also wanted to include containerized capabilities for ea
 
 ## Acknowledgments
 
-* Thank you, LeafFeather for giving the opportunity to show my skills
+* Thank you, LightFeather for giving the opportunity to show my skills
 
