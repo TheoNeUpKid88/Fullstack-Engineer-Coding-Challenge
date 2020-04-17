@@ -37,7 +37,6 @@ console.log('API Started');
 app.use(logger.requestLogger);
 app.use(logger.errorLogger);
 app.use(`/api/encode`, encode.Routes);
-app.use(`/api/decode`, decode.Routes);
 
 app.use(function (err, req, res, next) {
 
