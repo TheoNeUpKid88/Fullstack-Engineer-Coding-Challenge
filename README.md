@@ -9,13 +9,10 @@ The following instructions will get you a copy of the project up and running on 
 
 What things you need to install the software and how to install them
 * Node Package Manager
+    * Node
     * npm
     * yarn
-    * PHP
     * Typescript
-    * Python
-    * Django
-    * GO
 ```
  **NOTE** Please determine backend project prior to using select a front-end folder
 ```
@@ -28,14 +25,8 @@ A step by step series of how to get a development env running
    - Node
      1. npm / yarn install
      2. npm / yarn start
-   - Go
-     1. go run main.go
-   - PHP
-     1. php -S localhost:23456
-   - Python
-     1. go run main.go
    - Typescript
-     1. npm / yarn install
+     1. npm / yarn install 
      2. npm / yarn webpack
      3. npm / yarn start
 2. Front-end Folder selection
@@ -49,48 +40,29 @@ A step by step series of how to get a development env running
       - simply open file in browser
      
 
-```
-Give the example
-```
+In effort to highlight technical proficiency and interests. The intention of multiple approaches would be in hopes to stand-out among other candidates. Though, not included I also have experience developing REST API in GO, PHP, and Python
 
-And repeat
+> Talk is cheap.Show me the code. - Linus Torvalds
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+That being said lets get to it.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+I have designed and developed test cases, though not extensive. I wanted to include them to highlight that I am aware of unit test endpoints, methods (or functions depending who you ask)
 
-### Break down into end to end tests
+* yarn test
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+A report will the be generated and saved in a folder named "mochawesome-report", entering the folder open the index.html file.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Though, not requested I also wanted to include containerized capabilities for each backend soluton.
 
 ## Built With
 
-* The web framework used
-* Dependency Management
+* docker-compose up -d nodejs
 
-## Versioning
+## Versioning tool
 * git
 
 ## Authors
