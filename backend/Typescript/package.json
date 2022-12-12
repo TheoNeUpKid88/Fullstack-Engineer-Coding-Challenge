@@ -27,7 +27,7 @@
     "async": "^3.2.0",
     "codelyzer": "^5.2.2",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "helmet": "^3.22.0",
     "payload-validator": "^1.0.4",
